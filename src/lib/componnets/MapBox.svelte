@@ -8,7 +8,7 @@
 
 	let width = $state();
 	let height = $state();
-	let map = $state();
+	let map;
 	let mapParams = $state({
 		zoom: 4.4,
 		lng: -64.6293,
@@ -16,6 +16,8 @@
 		projection: { name: 'mercator' }
 	});
 	let projection = $state(() => [0, 0]); // Map the [lng, lat] date to the position on the Mapbox map
+
+	$inspect(projection);
 	let traceProjection = $derived(
 		d3
 			.line()
@@ -68,6 +70,7 @@
 				touchZoomRotate: false
 			});
 
+			console.log(map);
 			map.on('load', () => {
 				// Add navigation control
 				map.addControl(new mapboxgl.NavigationControl(), 'top-right');
